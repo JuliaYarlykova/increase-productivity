@@ -12,7 +12,7 @@ class Value extends Model
 
     public function qualities()
     {
-        return $this->belongsToMany(Quality::class, 'value_quality');
+        return $this->belongsToMany(Quality::class, 'quality_value');
     }
 
     public function qualitiesForEmployees()

@@ -15,6 +15,7 @@ use App\Http\Controllers\ValueController;
 use App\Http\Controllers\MetricsController;
 use App\Http\Controllers\MetricsGraphicsController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\PresetsController;
 use App\Http\Controllers\QualityValueController;
 use App\Http\Controllers\RisksGraphicsController;
 use App\Http\Controllers\Top3RisksEmployeesController;
@@ -151,6 +152,7 @@ Route::group([
     'middleware' => 'api',
 ], function ($router) {
     Route::get('risk_graphics/{employee_id}', [RisksGraphicsController::class, 'show']);
+    Route::get('company_risk_graphics/', [RisksGraphicsController::class, 'index']);
 });
 
 Route::group([
@@ -171,4 +173,6 @@ Route::group([
     Route::get('all_company_risks/', [AllRisksController::class, 'index']);
     Route::get('all_employee_risks/{employee_id}', [AllRisksController::class, 'show']);
 });
+
+Route::apiResource('presets', PresetsController::class)->only(['index']);
 

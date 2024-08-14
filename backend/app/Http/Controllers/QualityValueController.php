@@ -28,10 +28,8 @@ class QualityValueController extends Controller
 
         $employees_id = Employee::where('company_id', $company->id)->pluck('id');
 
-        $values_id = ValueQuality::whereIn('employee_id', $employees_id)->pluck('value_id')->unique();
-
         $values = Value::where('company_id', $company->id)
-            ->whereIn('id', $values_id)->get();
+            ->get();
 
         if (!$values) {
             return response()->json(['error' => 'You have no values'], 404);
@@ -44,24 +42,12 @@ class QualityValueController extends Controller
             $result[$i]['value_id'] = $value->id;
             $result[$i]['value_name'] = $value->name;
 
-            $count = Quality::whereIn('id', $value->valueQualities->whereIn('employee_id', $employees_id)
-                    ->unique()
-                    ->pluck('quality_id'))
-                ->count('id');
+            $count = $value->qualities->count();
 
+            $qualities_id = $value->qualities->pluck('id');
 
+            $qualities_name = $value->qualities->pluck('name');
 
-            $qualities_id = Quality::
-                whereIn('id', $value->valueQualities->whereIn('employee_id', $employees_id)
-                    ->unique()
-                    ->pluck('quality_id'))
-                ->pluck('id');
-
-            $qualities_name = Quality::
-                whereIn('id', $value->valueQualities->whereIn('employee_id', $employees_id)
-                    ->unique()
-                    ->pluck('quality_id'))
-                ->pluck('name');
 
             for ($j = 0; $j < $count; $j++) {
                 $result[$i]['qualities'][$j]['quality_id'] = $qualities_id[$j];

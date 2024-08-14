@@ -90,20 +90,23 @@ class AllRisksController extends Controller
             ->pluck('date')
             ->first();
 
-        $value_qialities = ValueQuality::whereIn('employee_id', $employees_id)
-            ->where('date', $date)
+        $values = Value::where('company_id', $company->id)
             ->get();
 
-        foreach ($value_qialities as $value_qiality) {
-            array_push($risks, (object) [
-                'value_name' => Value::where('id', $value_qiality->value_id)->pluck('name')->first(),
-                'quality_name' => Quality::where('id', $value_qiality->quality_id)->pluck('name')->first(),
-                'risk_name' => Quality::where('id', $value_qiality->quality_id)->pluck('risk_name')->first(),
-                'risk_value' => (int) ValueQuality::whereIn('employee_id', $employees_id)
-                    ->where('date', $date)
-                    ->where('quality_id', $value_qiality->quality_id)
-                    ->avg('risk'),
-                ]);
+        foreach ($values as $value) {
+            $qualities = $value->qualities;
+
+            foreach ($qualities as $quality) {
+                array_push($risks, (object) [
+                    'value_name' => $value->name,
+                    'quality_name' => $quality->name,
+                    'risk_name' => Quality::where('id', $quality->id)->pluck('risk_name')->first(),
+                    'risk_value' => (int) ValueQuality::whereIn('employee_id', $employees_id)
+                        ->where('date', $date)
+                        ->where('quality_id', $quality->id)
+                        ->avg('risk'),
+                    ]);
+            }
         }
 
         return response()->json($risks);

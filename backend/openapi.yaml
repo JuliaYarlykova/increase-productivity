@@ -1760,6 +1760,22 @@ paths:
           description: Success
 
   # Risk Graphics API
+  /api/company_risk_graphics/:
+    summary: Operations about Company Risks
+    get:
+      tags:
+        - Company Risks GET
+      summary: Company Risks
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
   /api/risk_graphics/{employee_id}:
     summary: Operations about Risk Graphics
     get:
@@ -1848,6 +1864,23 @@ paths:
           in: path
           schema:
             type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  # Presets API
+  /api/presets/:
+    summary: Operations about Presets
+    get:
+      tags:
+        - Presets GET
+      summary: Presets
+      security:
+        - bearerAuth: [ ]
       responses:
         200:
           description: Success
