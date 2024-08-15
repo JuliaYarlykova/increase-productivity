@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\SurveyHistory;
+use App\Models\User;
 use App\Models\Value;
 use App\Models\ValueQuality;
 use Illuminate\Http\Request;
@@ -31,45 +32,52 @@ class Top3RisksEmployeesController extends Controller
 
         foreach ($employees as $employee) {
             $metric_1_risk = SurveyHistory::where('employee_id', $employee->id)
-            ->orderBy('survey_date', 'DESC')
-            ->pluck('metric_1_risk')
-            ->first();
-
-            $metric_2_risk = SurveyHistory::where('employee_id', $employee->id)
-            ->orderBy('survey_date', 'DESC')
-            ->pluck('metric_2_risk')
-            ->first();
-
-            $metric_3_risk = SurveyHistory::where('employee_id', $employee->id)
-            ->orderBy('survey_date', 'DESC')
-            ->pluck('metric_3_risk')
-            ->first();
+                ->orderBy('survey_date', 'DESC')
+                ->pluck('metric_1_risk')
+                ->first();
 
             $max = 0;
-            if ($metric_1_risk & $metric_2_risk & $metric_3_risk) {
-                $value_date = ValueQuality::where('employee_id', $employee->id)
-                    ->orderBy('date', 'DESC')
-                    ->pluck('date')
+            if ($metric_1_risk) {
+                $metric_2_risk = SurveyHistory::where('employee_id', $employee->id)
+                    ->orderBy('survey_date', 'DESC')
+                    ->pluck('metric_2_risk')
                     ->first();
 
-                if ($value_date) {
-                    $sum_risks = ValueQuality::where('employee_id', $employee->id)
-                    ->where('date', $value_date)
-                    ->sum('risk');
+                if ($metric_2_risk) {
+                    $metric_3_risk = SurveyHistory::where('employee_id', $employee->id)
+                        ->orderBy('survey_date', 'DESC')
+                        ->pluck('metric_3_risk')
+                        ->first();
+                    if ($metric_3_risk) {
+                        $value_date = ValueQuality::where('employee_id', $employee->id)
+                            ->orderBy('date', 'DESC')
+                            ->pluck('date')
+                            ->first();
 
-                    $risk_result = $sum_risks + $metric_1_risk + $metric_2_risk + $metric_3_risk;
+                        if ($value_date) {
+                            $sum_risks = ValueQuality::where('employee_id', $employee->id)
+                            ->where('date', $value_date)
+                            ->sum('risk');
 
-                    if ($max < $risk_result) {
-                        array_push($employee_risk, array(
-                            'employee_id' => $employee->id,
-                            'employee_risk' => $risk_result,));
-                    }
-                    else {
-                        array_unshift($employee_risk, array(
-                            'employee_id' => $employee->id,
-                            'employee_risk' => $risk_result,));
+                            $risk_result = $sum_risks + $metric_1_risk + $metric_2_risk + $metric_3_risk;
 
-                        $max = $risk_result;
+
+
+                            if ($max < $risk_result) {
+                                array_push($employee_risk, array(
+                                    'user' => User::where('id', $employee->user_id)->first(),
+                                    'employee' => $employee,
+                                    'employee_risk' => $risk_result,));
+                            }
+                            else {
+                                array_unshift($employee_risk, array(
+                                    'user' => User::where('id', $employee->user_id)->first(),
+                                    'employee' => $employee,
+                                    'employee_risk' => $risk_result,));
+
+                                $max = $risk_result;
+                            }
+                        }
                     }
                 }
             }
