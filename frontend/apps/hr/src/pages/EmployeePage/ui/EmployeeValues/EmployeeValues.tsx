@@ -18,7 +18,7 @@ export const EmployeeValues = memo(
       padding="16"
       className={classNames(cls.diagram_card, {}, [className])}
     >
-      <PersonalValuesChart employeeId={employeeId} />
+      <PersonalValuesChart />
     </Card>
   ),
 );

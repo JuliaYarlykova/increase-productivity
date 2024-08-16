@@ -14,7 +14,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Закрыто',
     date: '14.07.2024',
@@ -23,7 +23,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Отказано',
     date: '14.07.2024',
@@ -32,7 +32,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Отказано',
     date: '14.07.2024',
@@ -41,7 +41,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Закрыто',
     date: '14.07.2024',
@@ -50,7 +50,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Отказано',
     date: '14.07.2024',
@@ -59,7 +59,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Закрыто',
     date: '14.07.2024',
@@ -68,7 +68,7 @@ const tempEventsList: EmployeeEvent[] = [
     id: 1,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     duration: 1500,
     status: 'Закрыто',
     date: '14.07.2024',

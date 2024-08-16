@@ -7,14 +7,13 @@ import { AddEmployeeDrawer } from '@/features/AddEmployee';
 import { FireEmployee } from '@/features/FireEmployee';
 import { Pagination } from '@/features/Pagination';
 import { SortEmployees } from '@/features/SortEmployees';
-import { PageLoader } from "@/widgets/PageLoader";
+import { PageLoader } from '@/widgets/PageLoader';
 
 import cls from './EmployeesSection.module.scss';
 
 interface EmployeesSectionProps {
   className?: string;
 }
-
 export const EmployeesSection = memo((props: EmployeesSectionProps) => {
   const { className } = props;
   const { data: employees, isLoading, isError } = fetchEmployees('');

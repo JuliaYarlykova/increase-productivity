@@ -8,6 +8,7 @@ import cls from './EmployeeCard.module.scss';
 
 export interface EmployeeCardProps {
   employee: Employee;
+  risk?: number;
   onCardClick?: (id: number) => void;
   FireEmployeeComponent?: React.ComponentType<{
     employee: Employee;
@@ -19,6 +20,7 @@ export interface EmployeeCardProps {
 export const EmployeeCard = memo((props: EmployeeCardProps) => {
   const {
     employee,
+    risk,
     onCardClick = () => {},
     FireEmployeeComponent,
     simple = false,
@@ -38,8 +40,11 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
         className={classNames(cls.SimpleEmployeeCard, mods, [])}
         onClick={() => onCardClick(employee.id)}
       >
-        <h4 className={cls.name}>{name}</h4>
-        <p className={cls.employee_position}>{employee.position}</p>
+        <div className={cls.text_wrap}>
+          <h4 className={cls.name}>{name}</h4>
+          <p className={cls.employee_position}>{employee.position}</p>
+        </div>
+        <span>{risk}</span>
       </div>
     );
 

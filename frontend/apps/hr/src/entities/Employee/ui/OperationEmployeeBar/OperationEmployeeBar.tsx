@@ -27,7 +27,7 @@ export const OperationEmployeeBar = (props: OperationEmployeeBarProps) => {
             operation.status[0] === '+' ? cls.status_green : cls.status_red,
           ])}
         >
-          {operation.status.toString()} б.
+          {operation.status.toString()} Б
         </p>
         <motion.button
           whileHover={{ scale: 1.1 }}
