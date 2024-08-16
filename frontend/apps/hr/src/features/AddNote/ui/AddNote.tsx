@@ -2,28 +2,38 @@ import { TextArea, Toast } from '@repo/shared/ui';
 import { useState } from 'react';
 import { useToaster } from 'rsuite';
 
+import { createEmployeeNote } from '../api/addNoteApi';
+
 import cls from './AddNote.module.scss';
 
-export const AddNote = () => {
-  const [note, setNote] = useState<string>('');
+interface addNoteProps {
+  employeeId: number;
+}
 
+export const AddNote = (props: addNoteProps) => {
+  const { employeeId } = props;
+  const [note, setNote] = useState<string>('');
+  const [addNote] = createEmployeeNote();
   const toaster = useToaster();
 
   const createNote = () => {
     if (note.trim().length > 0) {
-      // здесь будет отправка
-      setNote('');
-      toaster.push(
-        <Toast
-          text="Заметка добавлена!"
-          size="l"
-          variant="success"
-          addOnLeft={
-            <span className="material-symbols-outlined">check_circle</span>
-          }
-        />,
-        { placement: 'bottomCenter' },
-      );
+      addNote({ text: note, employee_id: employeeId })
+        .unwrap()
+        .then(() => {
+          setNote('');
+          toaster.push(
+            <Toast
+              text="Заметка добавлена!"
+              size="l"
+              variant="success"
+              addOnLeft={
+                <span className="material-symbols-outlined">check_circle</span>
+              }
+            />,
+            { placement: 'bottomCenter' },
+          );
+        });
     }
   };
 

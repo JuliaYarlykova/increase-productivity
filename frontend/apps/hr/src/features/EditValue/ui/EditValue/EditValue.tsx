@@ -1,5 +1,5 @@
 import { classNames, Mods } from '@repo/shared/lib';
-import { Button, Card, Input, Skeleton, Tag, Toast } from '@repo/shared/ui';
+import { Button, Card, Input, Tag, Toast } from '@repo/shared/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useToaster } from 'rsuite';
 
@@ -8,6 +8,7 @@ import { WarningCase, WarningModals } from '../WarningModals/WarningModals';
 import { useEditValue } from '../model/useEditValue';
 
 import { Quality, Value, fetchQualities } from '@/entities/Value';
+import { PageLoader } from '@/widgets/PageLoader';
 
 import cls from './EditValue.module.scss';
 
@@ -131,12 +132,14 @@ export const EditValue = (props: EditValueProps) => {
     [cls.drag]: drag,
   };
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div className={cls.EditValue}>
-        <Skeleton height="520px" />
+      <div className={cls.EmployeesSection}>
+        <PageLoader />
       </div>
     );
+  }
+
   if (isError || !allQualities) return <div>Error</div>;
   return (
     <div>

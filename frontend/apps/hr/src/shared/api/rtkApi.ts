@@ -14,6 +14,6 @@ export const rtkApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Events', 'Metrics', 'Values', 'Absenteism', 'Employees'],
+  tagTypes: ['Events', 'Metrics', 'Values', 'Absenteism', 'Employees', 'Notes'],
   endpoints: () => ({}),
 });

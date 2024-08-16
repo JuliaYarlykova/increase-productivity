@@ -1,5 +1,5 @@
 import { classNames } from '@repo/shared/lib';
-import { Card, Skeleton } from '@repo/shared/ui';
+import { Card } from '@repo/shared/ui';
 import React, { memo, useState } from 'react';
 
 import metrics from '../../model/data/tempMetrics.json';
@@ -8,6 +8,7 @@ import ValueConstructor from '../ValueConstructor/ui/ValueConstructor';
 
 import { fetchValues } from '@/entities/Value';
 import { Page } from '@/widgets/Page';
+import { PageLoader } from '@/widgets/PageLoader';
 
 import cls from './ValuesPage.module.scss';
 
@@ -20,13 +21,13 @@ const ValuesPage = (props: ValuesPageProps) => {
   const [isConstructorOpen, setIsConstructorOpen] = useState(false);
   const { data: values, isLoading, isError } = fetchValues('');
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <Page className={cls.ValuesPage}>
-        <Skeleton height="100%" border="4px" />
-        <Skeleton height="294px" border="4px" />
-      </Page>
+      <div className={cls.EmployeesSection}>
+        <PageLoader />
+      </div>
     );
+  }
 
   if (!values || isError) {
     return null;

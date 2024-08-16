@@ -1,4 +1,4 @@
-import { Button, Card, Skeleton } from '@repo/shared/ui';
+import { Button, Card } from '@repo/shared/ui';
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import { useModalActions } from '../model/useModalActions';
@@ -87,19 +87,6 @@ const ValueConstructor = (props: ValueConstrictorProps) => {
     setCurrentIndex(currentIndex - 1);
   };
 
-  if (isLoading)
-    return (
-      <Page className={cls.ValuesConstructorPage}>
-        <Skeleton height="100%" />
-        <div className={cls.presets}>
-          <Skeleton height="126px" width="100%" />
-          <Skeleton height="126px" width="100%" />
-          <Skeleton height="126px" width="100%" />
-          <Skeleton height="126px" width="100%" />
-          <Skeleton height="126px" width="100%" />
-        </div>
-      </Page>
-    );
   if (!values || !presets) return null;
   return (
     <Page className={cls.ValuesConstructorPage}>
