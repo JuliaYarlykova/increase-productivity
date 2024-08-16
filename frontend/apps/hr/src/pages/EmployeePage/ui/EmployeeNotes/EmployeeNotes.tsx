@@ -1,19 +1,12 @@
 import { Button, Card, Text } from '@repo/shared/ui';
 
-import { Employee, Note } from '@/entities/Employee';
+import { getEmployeeNotes } from './api/notesApi';
+
+import { Employee } from '@/entities/Employee';
 import { AddNote } from '@/features/AddNote';
 import { EditNote } from '@/features/EditNote';
 
 import cls from './EmployeeNotes.module.scss';
-
-const notes: Note[] = [
-  { id: 1, text: 'Note', date: '2024-04-12' },
-  { id: 2, text: 'another note', date: '2024-05-01' },
-  { id: 3, text: 'Noooooooooote', date: '2024-06-20' },
-  { id: 4, text: 'lalala', date: '2024-06-20' },
-  { id: 5, text: 'Заметка от 22 июня', date: '2024-06-22' },
-  { id: 6, text: 'Noooooooooote', date: '2024-06-25' },
-];
 
 interface EmployeeNotesProps {
   employee: Employee;
@@ -21,11 +14,12 @@ interface EmployeeNotesProps {
 
 export const EmployeeNotes = (props: EmployeeNotesProps) => {
   const { employee } = props;
+  const { data: notes, isLoading, isError } = getEmployeeNotes(employee.id);
 
   return (
     <Card variant="light" padding="16" className={cls.EmployeeNotes}>
       <Text title="Заметки" size="s" bold />
-      <AddNote />
+      <AddNote employeeId={employee.id} />
       {notes && (
         <div className={cls.notes}>
           <div className={cls.notes_list}>

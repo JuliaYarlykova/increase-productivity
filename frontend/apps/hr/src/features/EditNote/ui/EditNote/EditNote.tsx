@@ -2,6 +2,11 @@ import { Button, ModalSuccess, Toast } from '@repo/shared/ui';
 import { useState } from 'react';
 import { useToaster } from 'rsuite';
 
+import {
+  deleteEmployeeNote,
+  editEmployeeNote,
+  NoteToPost,
+} from '../../api/editNoteApi';
 import { EditNoteModal } from '../EditNoteModal/EditNoteModal';
 
 import { Note } from '@/entities/Employee';
@@ -17,46 +22,50 @@ export const EditNote = (props: EditNoteProps) => {
   const [isEditNote, setIsEditNote] = useState(false);
   const [isDeleteNote, setIsDeleteNote] = useState(false);
 
+  const [deleteNote] = deleteEmployeeNote();
+  const [editNote] = editEmployeeNote();
+
   const handleNoteClick = () => {
     setIsEditNote(true);
   };
 
   const toaster = useToaster();
 
-  const formatDate = (date: string) => {
-    const [year, month, day] = date.split('-');
-    return `${day}.${month}.${year}`;
-  };
-
-  const onEdit = (text: string) => {
-    // здесь отправка данных
-    toaster.push(
-      <Toast
-        text="Изменения сохранены!"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
+  const onEdit = (note: NoteToPost) => {
+    editNote(note)
+      .unwrap()
+      .then(() => {
+        toaster.push(
+          <Toast
+            text="Изменения сохранены!"
+            size="l"
+            variant="success"
+            addOnLeft={
+              <span className="material-symbols-outlined">check_circle</span>
+            }
+          />,
+          { placement: 'bottomCenter' },
+        );
+      });
   };
 
   const onDelete = () => {
-    // здесь отправка данных
-    setIsDeleteNote(false);
-    toaster.push(
-      <Toast
-        text="Заметка удалена!"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
+    deleteNote(note.id)
+      .unwrap()
+      .then(() => {
+        setIsDeleteNote(false);
+        toaster.push(
+          <Toast
+            text="Заметка удалена!"
+            size="l"
+            variant="success"
+            addOnLeft={
+              <span className="material-symbols-outlined">check_circle</span>
+            }
+          />,
+          { placement: 'bottomCenter' },
+        );
+      });
   };
 
   return (
@@ -68,11 +77,10 @@ export const EditNote = (props: EditNoteProps) => {
         onClick={handleNoteClick}
         className={cls.note_button}
       >
-        Заметка от {formatDate(note.date)}
+        <span className={cls.note_title}>{note.text}</span>
       </Button>
       {isEditNote && (
         <EditNoteModal
-          date={formatDate(note.date)}
           text={note.text}
           isOpen={isEditNote}
           onClose={() => setIsEditNote(false)}
@@ -80,6 +88,7 @@ export const EditNote = (props: EditNoteProps) => {
             setIsEditNote(false);
             setIsDeleteNote(true);
           }}
+          id={note.id}
           onSave={onEdit}
         />
       )}
