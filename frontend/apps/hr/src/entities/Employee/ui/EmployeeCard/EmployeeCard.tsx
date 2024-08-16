@@ -27,6 +27,8 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
   } = props;
   const disabled = employee.status === 'fired';
 
+  const rating = employee.rating ? Math.round(employee.rating * 100) : 0;
+
   let name = `${employee.last_name} ${employee.first_name}`;
   if (employee.middle_name) name += ` ${employee.middle_name}`;
 
@@ -40,11 +42,9 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
         className={classNames(cls.SimpleEmployeeCard, mods, [])}
         onClick={() => onCardClick(employee.id)}
       >
-        <div className={cls.text_wrap}>
-          <h4 className={cls.name}>{name}</h4>
-          <p className={cls.employee_position}>{employee.position}</p>
-        </div>
-        <span>{risk}</span>
+        <h4 className={cls.name}>{name}</h4>
+        <p className={cls.employee_position}>{employee.position}</p>
+        <span className={cls.employee_risk}>{`${risk} тыс. руб.`}</span>
       </div>
     );
 
@@ -57,8 +57,8 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
       <p className={cls.employee_position}>{employee.position}</p>
       {employee.rating && !disabled ? (
         <div className={cls.employee_stat}>
-          <span className={cls.stat_text}>{`${Math.round(employee.rating * 100)}%`}</span>
-          <ProgressBar size={employee.rating * 100} disabled={disabled} thin />
+          <span className={cls.stat_text}>{`${rating}%`}</span>
+          <ProgressBar size={rating} disabled={disabled} thin />
         </div>
       ) : (
         <span className={classNames(cls.stat_text, {}, [cls.norating])}>

@@ -84,7 +84,6 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
   });
 
   const onSubmit: SubmitHandler<EmployeeFormOutputData> = async (data) => {
-    console.log(isValid);
     if (isValid && employee) {
       const sendData = {
         ...data,
@@ -172,9 +171,6 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
                   if (errors.position) trigger('position');
                 }}
                 onBlur={() => {
-                  console.log(23);
-                  console.log(isValid);
-                  console.log(errors);
                   field.onBlur();
                   if (dirtyFields.position) handleSubmit(onSubmit)();
                 }}

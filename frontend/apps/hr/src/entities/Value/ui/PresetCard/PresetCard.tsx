@@ -28,12 +28,12 @@ export const PresetCard = (props: PresetCardProps) => {
       padding="16"
       className={classNames(cls.PresetCard, mods, [className])}
     >
-      <h3>{value.name}</h3>
+      <h3>{value.value_name}</h3>
       <ul className={cls.values_list}>
         {value.qualities.map((item, index) => (
           <li key={index}>
             <Badge variant="secondary" size="xs">
-              {item.name}
+              {item.quality_name}
             </Badge>
           </li>
         ))}

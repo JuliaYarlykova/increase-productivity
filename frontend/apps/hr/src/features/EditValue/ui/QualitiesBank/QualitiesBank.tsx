@@ -17,7 +17,9 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
   const [filteredQualities, setFilteredQualities] = useState<Quality[]>([]);
 
   useEffect(() => {
-    const alphabetSort = qualities.sort((a, b) => a.name.localeCompare(b.name));
+    const alphabetSort = [...qualities].sort((a, b) =>
+      a.quality_name.localeCompare(b.quality_name),
+    );
     setFilteredQualities(alphabetSort);
   }, [qualities]);
 
@@ -26,7 +28,7 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
     const searchTerm = event.target.value.toLowerCase();
 
     const searchResult = qualities.filter((quality) => {
-      const name = quality.name.toLowerCase();
+      const name = quality.quality_name.toLowerCase();
 
       const normalizedName = name.replace(/[-()]/g, ' ');
       if (normalizedName.startsWith(searchTerm)) {
@@ -39,8 +41,8 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
         .some((word) => word.length > 1 && word.startsWith(searchTerm));
     });
     searchResult.sort((a, b) => {
-      const aStartsWith = a.name.toLowerCase().startsWith(searchTerm);
-      const bStartsWith = b.name.toLowerCase().startsWith(searchTerm);
+      const aStartsWith = a.quality_name.toLowerCase().startsWith(searchTerm);
+      const bStartsWith = b.quality_name.toLowerCase().startsWith(searchTerm);
 
       if (aStartsWith && !bStartsWith) {
         return -1;
@@ -54,7 +56,7 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
   };
 
   const isSelected = (quality: Quality) =>
-    selectedQualities.some((item) => item.id === quality.id);
+    selectedQualities.some((item) => item.quality_id === quality.quality_id);
 
   const handleDragStart = (
     event: React.DragEvent<HTMLDivElement>,
@@ -85,7 +87,7 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
       <Card variant="light" className={cls.values_list} padding="8">
         <ul>
           {filteredQualities.map((quality) => (
-            <li key={quality.id}>
+            <li key={quality.quality_id}>
               <Tag
                 variant={isSelected(quality) ? 'primary' : 'secondary'}
                 size="s"
@@ -95,7 +97,7 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
                   if (isSelected(quality)) handleQualityClick(quality);
                 }}
               >
-                {quality.name}
+                {quality.quality_name}
               </Tag>
             </li>
           ))}
