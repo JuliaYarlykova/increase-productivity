@@ -1,1 +1,1 @@
-export { DownloadEmployeeReportButton } from "./ui/DownloadEmployeeReportButton/DownloadEmployeeReportButton";
+export { DownloadEmployeeReportButton } from '../DownloadCompanyReportButton/ui/DownloadEmployeeReportButton/DownloadEmployeeReportButton';

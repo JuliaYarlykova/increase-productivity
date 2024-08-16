@@ -2,7 +2,7 @@ import { ChartData } from 'chart.js';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
-type Data = {
+export type Data = {
   labels: string[];
   datasets: {
     label: string;
@@ -65,10 +65,9 @@ const graphicsApi = rtkApi.injectEndpoints({
       }),
     }),
 
-    // TODO: Не реализовано на бэке
-    fetchCompanyRisk: build.query<Data, string>({
-      query: (id) => ({
-        url: `/company_top_qualities_risk_graphics/${id}`,
+    fetchCompanyRisk: build.query<ChartData<'bar'>, null>({
+      query: () => ({
+        url: `/company_risk_graphics`,
         method: 'GET',
       }),
     }),
@@ -81,3 +80,4 @@ export const getPersonalValues = graphicsApi.useFetchPersonalValuesQuery;
 export const getPersonalMetrics = graphicsApi.useFetchPersonalMetricsQuery;
 export const getPersonalQualities = graphicsApi.useFetchPersonalQualitiesQuery;
 export const getPersonalRisks = graphicsApi.useFetchPersonalRiskQuery;
+export const getCompanyRisksValues = graphicsApi.useFetchCompanyRiskQuery;

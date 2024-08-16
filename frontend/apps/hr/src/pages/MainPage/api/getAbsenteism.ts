@@ -17,9 +17,9 @@ interface AbsenteismScheme {
   };
 }
 
-const absenteismApi = rtkApi.injectEndpoints({
+const metricsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getAbsenteism: build.query<AbsenteismScheme, null>({
+    getMetrics: build.query<AbsenteismScheme, null>({
       query: () => ({
         url: `/collective_metrics`,
         method: 'GET',
@@ -29,4 +29,4 @@ const absenteismApi = rtkApi.injectEndpoints({
   }),
 });
 
-export const getAbsenteism = absenteismApi.useGetAbsenteismQuery;
+export const getMetrics = metricsApi.useGetMetricsQuery;

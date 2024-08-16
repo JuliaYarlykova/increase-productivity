@@ -9,13 +9,13 @@ import {
 } from '@react-pdf/renderer';
 import { memo, useEffect, useState } from 'react';
 
+import { CompanyRisk } from '../../api/getCompanyRisks';
 import { canvasToSrc } from '../../lib/canvasToSrc';
 import { formatDate } from '../../lib/formatDate';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 import {
   CompanyMetricsChart,
-  // CompanyQualityChart,
   CompanyRiskChart,
   CompanyValuesChart,
 } from '@/entities/Diagrams';
@@ -63,11 +63,53 @@ const styles = StyleSheet.create({
     padding: 10,
     flexGrow: 1,
   },
+  table: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    borderBottom: '1px solid #CACACA',
+
+    padding: 3,
+  },
+  riskName: {
+    width: 300,
+  },
+  valueName: {
+    width: 120,
+    color: '#6C6F74',
+  },
+  tablePage: {
+    padding: 80,
+    gap: 8,
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: 10,
+    fontWeight: 300,
+  },
+  numberName: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 8,
+  },
+  headTable: {
+    textAlign: 'right',
+    borderBottom: '1px solid #CACACA',
+    color: '#6C6F74',
+  },
+  riskValue: {
+    width: 100,
+    textAlign: 'right',
+  },
 });
 
-export const CompanyReport = memo(() => {
+interface CompanyReportProps {
+  data: CompanyRisk[];
+}
+
+export const CompanyReport = memo((props: CompanyReportProps) => {
+  const { data } = props;
   const [companyMetricsSrc, setCompanyMetricsSrc] = useState('');
-  // const [companyQualitiesSrc, setCompanyQualitiesSrc] = useState('');
   const [companyRiskSrc, setCompanyRiskSrc] = useState('');
   const [companyValuesSrc, setCompanyValuesSrc] = useState('');
 
@@ -78,7 +120,6 @@ export const CompanyReport = memo(() => {
           <CompanyMetricsChart />
         </StoreProvider>,
       );
-      // const companyQualitiesSrc = await canvasToSrc(<CompanyQualityChart />);
       const companyRiskSrc = await canvasToSrc(
         <StoreProvider>
           <CompanyRiskChart />
@@ -90,7 +131,6 @@ export const CompanyReport = memo(() => {
         </StoreProvider>,
       );
       setCompanyMetricsSrc(companyMetricsSrc);
-      // setCompanyQualitiesSrc(companyQualitiesSrc);
       setCompanyRiskSrc(companyRiskSrc);
       setCompanyValuesSrc(companyValuesSrc);
     };
@@ -120,6 +160,19 @@ export const CompanyReport = memo(() => {
         <View style={styles.chartView}>
           <Image src={companyValuesSrc} />
         </View>
+      </Page>
+      <Page style={styles.tablePage}>
+        <Text style={styles.headTable}>сумма, руб.</Text>
+        {data &&
+          data.map((risk, i) => (
+            <View style={styles.table}>
+              <Text style={styles.riskName}>{risk.risk_name}</Text>
+              <Text style={styles.valueName}>
+                {risk.quality_name || 'Ценность/Метрика'}
+              </Text>
+              <Text style={styles.riskValue}>{risk.risk_value}</Text>
+            </View>
+          ))}
       </Page>
     </Document>
   );

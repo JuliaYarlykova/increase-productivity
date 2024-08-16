@@ -3,6 +3,7 @@
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
+import { useParams } from 'react-router-dom';
 
 import { getPersonalValues } from '../../model/api/graphicsApi';
 
@@ -55,14 +56,12 @@ const options: ChartOptions<'radar'> = {
   animation: false,
 };
 
-type PersonalValuesChartProps = {
-  employeeId: string;
-};
-
 const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
 
-export function PersonalValuesChart({ employeeId }: PersonalValuesChartProps) {
-  const { data } = getPersonalValues(employeeId);
+export function PersonalValuesChart() {
+  const { id } = useParams<{ id: string }>();
+  if (!id) return null;
+  const { data } = getPersonalValues(id);
 
   if (!data || !data.datasets.length) return null;
 

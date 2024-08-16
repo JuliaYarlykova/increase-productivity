@@ -14,7 +14,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 1,
     name: 'Сертификат OZON',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Подарочный сертификат Ozon - это прекрасный способ порадовать близких и друзей возможностью выбора подарка по своему вкусу из широкого ассортимента товаров на популярном интернет-маркетплейсе. Сертификат представляет собой уникальный код, который можно использовать для оплаты покупок на Ozon. ',
     status: '-1500',
     date: '14.07.2024',
   },
@@ -22,15 +22,14 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 2,
     name: 'Сертификат OZON',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Подарочный сертификат Ozon - это прекрасный способ порадовать близких и друзей возможностью выбора подарка по своему вкусу из широкого ассортимента товаров на популярном интернет-маркетплейсе. Сертификат представляет собой уникальный код, который можно использовать для оплаты покупок на Ozon. ',
     status: '-1500',
     date: '14.07.2024',
   },
   {
     id: 3,
     name: 'Изменения баланса от HR',
-    description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+    description: 'Баланс изменен',
     status: '-1500',
     date: '14.07.2024',
   },
@@ -38,7 +37,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 4,
     name: 'Сертификат OZON',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Подарочный сертификат Ozon - это прекрасный способ порадовать близких и друзей возможностью выбора подарка по своему вкусу из широкого ассортимента товаров на популярном интернет-маркетплейсе. Сертификат представляет собой уникальный код, который можно использовать для оплаты покупок на Ozon. ',
     status: '-1500',
     date: '14.07.2024',
   },
@@ -46,7 +45,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 5,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     status: '+1500',
     date: '14.07.2024',
   },
@@ -54,7 +53,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 6,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     status: '+1500',
     date: '14.07.2024',
   },
@@ -63,7 +62,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 7,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     status: '+1500',
     date: '14.07.2024',
   },
@@ -72,7 +71,7 @@ const tempOperationsList: EmployeeOperation[] = [
     id: 8,
     name: 'Мероприятие',
     description:
-      'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
+      'Портрет вместе. Творческие мероприятия по сплочению команды отлично подходят для того,чтобы растопить лед или зарядить команду энергией с помощью игры. На ней вы и ваша команда создадите портреты всех членов группы, а затем получите веселые, заряжающие энергией эмоции.',
     status: '+1500',
     date: '14.07.2024',
   },

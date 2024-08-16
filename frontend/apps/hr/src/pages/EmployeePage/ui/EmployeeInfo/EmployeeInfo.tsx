@@ -3,9 +3,9 @@ import { Card, Input, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import { EmployeeProfile } from '../EmployeeProfile/ui/EmployeeProfile';
+import { EmployeeReport } from '../EmployeeReport/EmployeeReport';
 
 import { Employee, EmployeeRating } from '@/entities/Employee';
-import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 
 import cls from './EmployeeInfo.module.scss';
 
@@ -30,10 +30,7 @@ export const EmployeeInfo = memo((props: EmployeeInfoProps) => {
         />
         <Input readonly value={employee.email} />
       </Card>
-      <DownloadEmployeeReportButton
-        employeeId={employee.id}
-        className={cls.report}
-      />
+      <EmployeeReport employee={employee} />
       <EmployeeRating rating={employee.rating} />
     </section>
   );

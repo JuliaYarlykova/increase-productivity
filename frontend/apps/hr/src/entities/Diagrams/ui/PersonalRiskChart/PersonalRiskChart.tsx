@@ -39,8 +39,8 @@ const options: ChartOptions<'bar'> = {
         label(tooltipItem) {
           const value =
             typeof tooltipItem.raw === 'number'
-              ? Math.abs(tooltipItem.raw)
-              : tooltipItem.raw;
+              ? `${Math.abs(tooltipItem.raw)} тыс.р`
+              : `${tooltipItem.raw} тыс.р`;
           return `${tooltipItem.dataset.label}: ${value}`;
         },
       },

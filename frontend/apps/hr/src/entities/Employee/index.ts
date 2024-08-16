@@ -7,6 +7,8 @@ export type {
   Document,
   EmployeeEvent,
   EmployeeOperation,
+  TopEmployees,
+  TopEmployee,
 } from './model/types/employee';
 export {
   fetchEmployees,

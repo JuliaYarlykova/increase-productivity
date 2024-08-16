@@ -103,3 +103,31 @@ export interface EmployeeEvent {
   duration: number;
   description?: string;
 }
+
+interface User {
+  id: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  email: string;
+}
+
+export interface TopEmployee {
+  id: number;
+  birth_date: string;
+  position: string;
+  company_id?: number;
+  work_experience: number;
+  salary: string;
+  balance: string;
+  imgSrc: string;
+  status: string;
+  date_of_hiring: string;
+  rating: number | null;
+}
+
+export interface TopEmployees {
+  employee: TopEmployee;
+  user: User;
+  employee_risk: number;
+}

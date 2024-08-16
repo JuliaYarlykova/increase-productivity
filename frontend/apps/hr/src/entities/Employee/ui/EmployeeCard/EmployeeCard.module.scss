@@ -86,6 +86,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   width: 100%;
@@ -103,10 +104,14 @@
     line-height: 22px;
     margin-left: 0;
   }
-  h4 {
-    margin-right: 190px;
-  }
   p {
     line-height: 22px;
+    width: 200px;
+  }
+  .text_wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

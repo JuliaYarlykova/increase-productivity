@@ -2,6 +2,7 @@
 
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { memo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
 
@@ -64,12 +65,13 @@ const options: ChartOptions<'line'> = {
 
 const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
 
-export function PersonalMetricsChart() {
+export const PersonalMetricsChart = memo(() => {
   const { id } = useParams<{ id: string }>();
+
   if (!id) return null;
   const { data } = getPersonalMetrics(id);
 
-  if (!data || !data.datasets.length) return null;
+  if (!data) return null;
 
   const formattedData: ChartData<'line'> = {
     labels: data.labels,
@@ -82,4 +84,4 @@ export function PersonalMetricsChart() {
   };
 
   return <Line data={formattedData} options={options} height="100%" />;
-}
+});

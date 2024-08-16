@@ -52,7 +52,7 @@ export const AddAbsenteismForm = memo((props: AddAbsenteismFormProps) => {
       placeholder="Абсентеизм"
       size="l"
       maskedInputRef={mask}
-      value={value || absenteism}
+      value={value || `${absenteism}%`}
       onInput={(e) => setValue(e.currentTarget.value)}
       onBlur={onSubmit}
     />

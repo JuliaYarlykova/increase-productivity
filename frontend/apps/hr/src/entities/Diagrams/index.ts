@@ -10,3 +10,5 @@ export { PersonalValuesChart } from './ui/PersonalValuesChart/PersonalValuesChar
 export { getPersonalQualities } from './model/api/graphicsApi';
 
 export { type Metric } from './model/types/metric';
+export { type Data } from './model/api/graphicsApi';
+export { getPersonalValues, getPersonalMetrics } from './model/api/graphicsApi';
