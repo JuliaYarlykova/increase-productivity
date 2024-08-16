@@ -75,11 +75,14 @@ const Employees: Employee[] = [
 export const ChartList = memo(() => {
   const navigate = useNavigate();
   const { data: absenteism, isLoading } = getAbsenteism(null);
-  const { data: rating, isLoading: isLoadingRating } = getRating(null);
+  const { data: rating } = getRating(null);
+
   const handleClick = (id: number) => {
     navigate(getRouteEmployee(String(id)));
   };
+
   if (!absenteism && !rating) return null;
+
   return (
     <section className={cls.ChartList}>
       <div className={cls.list_wrap}>

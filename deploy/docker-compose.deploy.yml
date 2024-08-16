@@ -1,14 +1,6 @@
 version: '3.7'
 services:
   # FRONTEND
-  landing:
-    build:
-      context: ./frontend
-      dockerfile: ./apps/landing/Dockerfile
-    restart: always
-    networks:
-      - default
-
   hr:
     build:
       context: ./frontend

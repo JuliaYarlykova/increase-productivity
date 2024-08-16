@@ -1,10 +1,12 @@
-import { Skeleton, Text } from '@repo/shared/ui';
+import { classNames } from "@repo/shared/lib";
+import { Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import { fetchEvents } from '../api/eventApi';
 
 import { EventsList } from '@/entities/Event';
 import { type Event } from '@/entities/Event';
+import { PageLoader } from "@/widgets/PageLoader";
 
 import cls from './EventsInfiniteList.module.scss';
 
@@ -21,15 +23,7 @@ export const EventsInfiniteList = memo((props: EventsInfiniteListProps) => {
   if (isLoading) {
     return (
       <div className={cls.card_wrap}>
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
-
-        <Skeleton width={404} height={319} border="4px" />
-        <Skeleton width={404} height={319} border="4px" />
+        <PageLoader />
       </div>
     );
   }
@@ -40,6 +34,7 @@ export const EventsInfiniteList = memo((props: EventsInfiniteListProps) => {
 
   return (
     <EventsList
+      className={classNames('', {}, [className])}
       events={response?.data}
       setIsOpen={openDrawer}
       setActiveEvent={setActiveEvent}

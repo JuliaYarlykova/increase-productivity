@@ -1,5 +1,6 @@
 import { type RouteProps } from 'react-router-dom';
 
+import { AuthPage } from "@/pages/AuthPage";
 import { CatalogPage } from '@/pages/CatalogPage';
 import { EmployeePage } from '@/pages/EmployeePage';
 import { EventsPage } from '@/pages/EventsPage';
@@ -20,7 +21,7 @@ import {
   getRouteInstructions,
   getTestDiagrams, // TODO: Потом удалить
   getRouteMain,
-  getRouteProfile,
+  getRouteProfile, getRouteAuth,
 } from '@/shared/const/router';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -64,5 +65,9 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     // TODO: Потом удалить
     path: getTestDiagrams(),
     element: <TestDiagramsPage />,
+  },
+  [AppRoutes.AUTH]: {
+    path: getRouteAuth(),
+    element: <AuthPage />,
   },
 };

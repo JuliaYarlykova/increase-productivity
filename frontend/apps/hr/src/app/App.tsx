@@ -1,21 +1,34 @@
 import { MainLayout } from '@repo/shared/layouts';
 import React, { Suspense, useEffect } from 'react';
+import { useSelector } from "react-redux";
 
 import { AppRouter } from './providers/router';
 
-import { login } from '@/features/Authorization';
-import { useAppDispatch } from '@/shared/lib';
+import { initAuthData , getInitedState } from '@/entities/User';
+import { AuthPage } from "@/pages/AuthPage";
+import { USER_SECRET_TOKEN } from "@/shared/const/localstorage";
+import { useAppDispatch } from "@/shared/lib";
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 
+
 function App() {
   const dispatch = useAppDispatch();
+  const inited = useSelector(getInitedState);
 
   useEffect(() => {
-    dispatch(
-      login({ email: 'viletyalov1212@gmail.com', password: 'passvdn1212' }),
-    );
-  }, [dispatch]);
+    if (!inited) {
+      dispatch(initAuthData())
+    }
+  })
+
+  const token = localStorage.getItem(USER_SECRET_TOKEN);
+
+  if (!token || !inited) {
+    return (
+      <AuthPage />
+    )
+  }
 
   return (
     <div className="app">

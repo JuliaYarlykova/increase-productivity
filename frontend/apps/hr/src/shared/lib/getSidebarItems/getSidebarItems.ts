@@ -4,7 +4,6 @@ import {
   getRouteCatalog,
   getRouteValues,
   getRouteEvents,
-  getRouteInstructions,
   getRouteMain,
 } from '@/shared/const/router';
 
@@ -26,10 +25,10 @@ export const getSidebarItems = () => {
       path: getRouteCatalog(),
       text: 'Каталог',
     },
-    {
-      path: getRouteInstructions(),
-      text: 'Инструкция',
-    },
+    // {
+    //   path: getRouteInstructions(),
+    //   text: 'Инструкция',
+    // },
   ];
 
   return sidebarItemsList;
