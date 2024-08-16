@@ -15,7 +15,7 @@ export const EmployeeRating = memo((props: EmployeeRatingProps) => {
       <Text title="Рейтинг ценностей" size="s" bold />
       {rating ? (
         <div className={cls.rating}>
-          <span className={cls.stat_text}>{`${rating * 100}%`}</span>
+          <span className={cls.stat_text}>{`${Math.round(rating * 100)}%`}</span>
           <ProgressBar size={rating * 100} />
         </div>
       ) : (

@@ -1,5 +1,5 @@
 import { classNames } from '@repo/shared/lib';
-import { Button, Card, Skeleton, Text } from '@repo/shared/ui';
+import { Button, Card, Text } from '@repo/shared/ui';
 import { memo, useState } from 'react';
 
 import { Employee, EmployeeList, fetchEmployees } from '@/entities/Employee';
@@ -7,6 +7,7 @@ import { AddEmployeeDrawer } from '@/features/AddEmployee';
 import { FireEmployee } from '@/features/FireEmployee';
 import { Pagination } from '@/features/Pagination';
 import { SortEmployees } from '@/features/SortEmployees';
+import { PageLoader } from "@/widgets/PageLoader";
 
 import cls from './EmployeesSection.module.scss';
 
@@ -24,7 +25,7 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
   if (isLoading) {
     return (
       <div className={cls.EmployeesSection}>
-        <Skeleton width="100%" height={88} border="4px" />
+        <PageLoader />
       </div>
     );
   }

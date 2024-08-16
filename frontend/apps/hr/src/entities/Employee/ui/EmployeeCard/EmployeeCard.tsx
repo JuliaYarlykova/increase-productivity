@@ -52,7 +52,7 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
       <p className={cls.employee_position}>{employee.position}</p>
       {employee.rating && !disabled ? (
         <div className={cls.employee_stat}>
-          <span className={cls.stat_text}>{`${employee.rating * 100}%`}</span>
+          <span className={cls.stat_text}>{`${Math.round(employee.rating * 100)}%`}</span>
           <ProgressBar size={employee.rating * 100} disabled={disabled} thin />
         </div>
       ) : (

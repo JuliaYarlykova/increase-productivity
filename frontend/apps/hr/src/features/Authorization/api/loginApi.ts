@@ -1,14 +1,11 @@
+import { LoginSchema } from '../model/types/loginSchema';
+
 import { rtkApi } from '@/shared/api/rtkApi';
 
 interface LoginResponse {
   access_token: string;
   token_type: string;
   expires_in: number;
-}
-
-export interface LoginSchema {
-  email: string;
-  password: string;
 }
 
 const loginApi = rtkApi.injectEndpoints({
