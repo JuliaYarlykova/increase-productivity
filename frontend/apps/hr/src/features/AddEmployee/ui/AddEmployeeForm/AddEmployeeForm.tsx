@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
 import { Button, Input, Text, Toast } from '@repo/shared/ui';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToaster } from 'rsuite';
 
@@ -41,6 +41,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
     reset,
     control,
     trigger,
+    setError,
     formState: { errors, isValid },
   } = useForm<EmployeeFormInputData, any, EmployeeFormOutputData>({
     defaultValues: {
@@ -72,32 +73,37 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
   }, [onReset, reset]);
 
   const onSubmit: SubmitHandler<EmployeeFormOutputData> = useCallback(
-    async (data) => {
+    (data) => {
       // TODO: убрать, когда исправят api
       data.password_confirmation = data.password;
-      await createEmployee(data);
-    },
-    [createEmployee],
-  );
-
-  useEffect(() => {
-    if (isSuccess) {
-      reset();
-      onSuccess();
-      toaster.push(
-        <Toast
-          text="Сотрудник добавлен!"
-          size="l"
-          variant="success"
-          addOnLeft={
-            <span className="material-symbols-outlined">check_circle</span>
+      createEmployee(data)
+        .unwrap()
+        .then(() => {
+          reset();
+          onSuccess();
+          toaster.push(
+            <Toast
+              text="Сотрудник добавлен!"
+              size="l"
+              variant="success"
+              addOnLeft={
+                <span className="material-symbols-outlined">check_circle</span>
+              }
+            />,
+            { placement: 'bottomCenter' },
+          );
+        })
+        .catch((error) => {
+          if (error.data.errors.email) {
+            setError('email', {
+              type: 'custom',
+              message: 'Аккаунт с таким E-mail уже зарегистрирован в системе',
+            });
           }
-        />,
-        { placement: 'bottomCenter' },
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
+        });
+    },
+    [createEmployee, onSuccess, reset, toaster, setError],
+  );
 
   return (
     <form

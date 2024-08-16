@@ -9,12 +9,10 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { TestDiagramsPage } from '@/pages/TestDiagrams'; // TODO: Потом удалить
-import { ValueConstructorPage } from '@/pages/ValueConstructorPage';
 import { ValuesPage } from '@/pages/ValuesPage';
 import {
   AppRoutes,
   getRouteValues,
-  getRouteValuesConstructor,
   getRouteEmployee,
   getRouteEvents,
   getRouteCatalog,
@@ -36,10 +34,6 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.VALUES]: {
     path: getRouteValues(),
     element: <ValuesPage />,
-  },
-  [AppRoutes.VALUES_CONSTRUCTOR]: {
-    path: getRouteValuesConstructor(),
-    element: <ValueConstructorPage />,
   },
   [AppRoutes.EMPLOYEE]: {
     path: getRouteEmployee(':id'),

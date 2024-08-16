@@ -1,21 +1,25 @@
-import { Button } from '@repo/shared/ui';
+import { Button, ModalSuccess } from '@repo/shared/ui';
 
 import { WarningCase } from '../../../model/types/warning';
 import { modalContent } from '../model/constants';
 
-export const getWarningModalContent = (
-  warningCase: WarningCase,
-  onClose: () => void,
-  onConfirm?: () => void,
-) => {
+interface WarningModalProps {
+  warningCase: WarningCase;
+  onClose: () => void;
+  onConfirm?: () => void;
+}
+
+export const WarningModal = (props: WarningModalProps) => {
+  const { onClose, onConfirm, warningCase } = props;
+
   const { title, text } = modalContent[warningCase];
   const buttons = modalContent[warningCase].onConfirm ? (
     <div style={{ display: 'flex', gap: 8 }}>
       <Button variant="secondary" size="s" fullWidth onClick={onClose}>
-        Вернуться в конструктор
+        {modalContent[warningCase].confirmText}
       </Button>
       <Button variant="primary" size="s" fullWidth onClick={onConfirm}>
-        {modalContent[warningCase].confirmText}
+        {modalContent[warningCase].cancelText}
       </Button>
     </div>
   ) : (
@@ -24,9 +28,14 @@ export const getWarningModalContent = (
     </Button>
   );
 
-  return {
-    title,
-    text,
-    buttons,
-  };
+  return (
+    <ModalSuccess
+      variant="constructor"
+      isOpen={Boolean(warningCase)}
+      onClose={() => {}}
+      text={text}
+      title={title}
+      button={buttons}
+    />
+  );
 };

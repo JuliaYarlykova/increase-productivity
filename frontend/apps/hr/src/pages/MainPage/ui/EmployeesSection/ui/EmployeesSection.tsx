@@ -33,7 +33,7 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
     return <Text title="Произошла ошибка при загрузке данных" align="center" />;
   }
 
-  if (!employees || employees.length === 0) {
+  if (employees.length === 0) {
     return (
       <div className={cls.start_layout}>
         <Card variant="light" padding="16">

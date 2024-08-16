@@ -1,15 +1,4 @@
 .MainLayout {
-  min-height: 100%;
-  display: grid;
-  margin: 0 16px;
-  grid-template:
-    'header header'
-    'sidebar content'
-    'footer footer'
-    / var(--sidebar-width) 1fr;
-  grid-auto-rows: auto 120px;
-  column-gap: 8px;
-  min-height: 100%;
   display: grid;
   margin: 0 16px;
   grid-template:
@@ -22,10 +11,6 @@
 }
 
 .header {
-  z-index: var(--header-z-index);
-  grid-area: header;
-  position: sticky;
-  top: 0;
   z-index: var(--header-z-index);
   grid-area: header;
   position: sticky;
@@ -45,16 +30,9 @@
   justify-self: center;
   width: 100%;
   overflow: hidden;
-  grid-area: content;
-  justify-self: center;
-  width: 100%;
-  overflow: hidden;
 }
 
 .footer {
-  grid-area: footer;
-  position: sticky;
-  bottom: 0;
   grid-area: footer;
   position: sticky;
   bottom: 0;

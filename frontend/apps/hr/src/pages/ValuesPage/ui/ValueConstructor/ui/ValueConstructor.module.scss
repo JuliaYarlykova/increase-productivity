@@ -55,30 +55,20 @@
       margin-bottom: 16px;
     }
 
-    .values {
-      overflow-y: scroll;
-      scroll-behavior: smooth;
+    .buttons {
       display: flex;
-      flex-direction: column;
-      max-height: 720px;
-
-      .values_list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-
-    .add_value_button {
-      width: fit-content;
-      margin-top: 16px;
-      margin-bottom: 16px;
+      margin-top: auto;
+      justify-content: space-between;
     }
 
     .constructor_buttons {
       display: flex;
+      gap: 4px;
+    }
+
+    .navigation_buttons {
+      display: flex;
       gap: 8px;
-      margin-top: auto;
     }
   }
 }

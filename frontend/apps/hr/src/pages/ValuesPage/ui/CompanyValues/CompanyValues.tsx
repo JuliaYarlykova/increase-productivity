@@ -1,25 +1,21 @@
 import { classNames } from '@repo/shared/lib';
 import { Button, Card } from '@repo/shared/ui';
-import { useNavigate } from 'react-router-dom';
 
 import { Value, ValueCard } from '@/entities/Value';
-import { getRouteValuesConstructor } from '@/shared/const/router';
 
 import cls from './CompanyValues.module.scss';
 
 interface CompanyValuesProps {
   values?: Value[];
+  openConstructor: () => void;
 }
 
 export const CompanyValues = (props: CompanyValuesProps) => {
-  const { values } = props;
-  const navigate = useNavigate();
-  const openConstructor = () => {
-    navigate(getRouteValuesConstructor());
-  };
+  const { values, openConstructor } = props;
+
   return (
     <Card variant="light" padding="16" className={cls.company_values}>
-      {!values || values.length === 0 ? (
+      {!values || values.length === 0 || values[0].value_name === undefined ? (
         <section>
           <div className={cls.values_header}>
             <h2>Наши ценности и качества</h2>
