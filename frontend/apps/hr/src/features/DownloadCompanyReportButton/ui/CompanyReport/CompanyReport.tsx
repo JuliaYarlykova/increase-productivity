@@ -149,9 +149,6 @@ export const CompanyReport = memo((props: CompanyReportProps) => {
         <View style={styles.chartView}>
           <Image src={companyMetricsSrc} />
         </View>
-        {/* <View style={styles.chartView}>
-          <Image src={companyQualitiesSrc} />
-        </View> */}
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>
@@ -162,17 +159,39 @@ export const CompanyReport = memo((props: CompanyReportProps) => {
         </View>
       </Page>
       <Page style={styles.tablePage}>
-        <Text style={styles.headTable}>сумма, руб.</Text>
+        <Text>Риски</Text>
+        <Text style={styles.headTable}>тыс. руб.</Text>
+        <View style={styles.table}>
+          <Text style={styles.riskName}>Риск саботажа работы</Text>
+          <Text style={styles.valueName}>Оценка вовлеченности персонала</Text>
+          <Text style={styles.riskValue}>13</Text>
+        </View>
+        <View style={styles.table}>
+          <Text style={styles.riskName}>Риск увольнения</Text>
+          <Text style={styles.valueName}>Оценка лояльности сотрудников</Text>
+          <Text style={styles.riskValue}>13</Text>
+        </View>
+        <View style={styles.table}>
+          <Text style={styles.riskName}>
+            Риск выгорания сотрудника с последующим увольнением
+          </Text>
+          <Text style={styles.valueName}>
+            Индекс удовлетворённости сотрудников
+          </Text>
+          <Text style={styles.riskValue}>33</Text>
+        </View>
         {data &&
-          data.map((risk, i) => (
-            <View style={styles.table}>
-              <Text style={styles.riskName}>{risk.risk_name}</Text>
-              <Text style={styles.valueName}>
-                {risk.quality_name || 'Ценность/Метрика'}
-              </Text>
-              <Text style={styles.riskValue}>{risk.risk_value}</Text>
-            </View>
-          ))}
+          data.map((risk, i) => {
+            if (risk.quality_name)
+              return (
+                <View style={styles.table}>
+                  <Text style={styles.riskName}>{risk.risk_name}</Text>
+                  <Text style={styles.valueName}>{risk.quality_name}</Text>
+                  <Text style={styles.riskValue}>{risk.risk_value}</Text>
+                </View>
+              );
+            return null;
+          })}
       </Page>
     </Document>
   );

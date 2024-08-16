@@ -1,5 +1,5 @@
 import { classNames } from '@repo/shared/lib';
-import { Skeleton, Text } from '@repo/shared/ui';
+import { Text } from '@repo/shared/ui';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ import { EmployeeValuesList } from '../EmployeeValuesList/EmployeeValuesList';
 
 import { fetchEmployeeById } from '@/entities/Employee';
 import { Page } from '@/widgets/Page';
+import { PageLoader } from '@/widgets/PageLoader';
 
 import cls from './EmployeePage.module.scss';
 
@@ -33,24 +34,7 @@ const EmployeePage = (props: EmployeePageProps) => {
   const { data: response, isLoading, isError } = fetchEmployeeById(id);
 
   if (isLoading) {
-    return (
-      <Page className={classNames(cls.EmployeePage, {}, [className])}>
-        <div className={cls.info}>
-          <Skeleton
-            width="100%"
-            height="100%"
-            border="4px"
-            className={cls.profile}
-          />
-          <Skeleton width="100%" height="100%" border="4px" />
-          <Skeleton width="100%" height="100%" border="4px" />
-          <Skeleton width="100%" height="100%" border="4px" />
-        </div>
-        <Skeleton width="100%" height="100%" border="4px" />
-        <Skeleton width="100%" height="100%" border="4px" />
-        <Skeleton width="100%" height="100%" border="4px" />
-      </Page>
-    );
+    return <PageLoader />;
   }
 
   if (!response || isError) {
